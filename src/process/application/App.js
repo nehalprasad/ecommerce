@@ -10,11 +10,13 @@ import {
   SignIn,
   SignUp,
 } from "../../show/pages/public";
+import { Navbar } from "../../show/components";
 import { Cart } from "../../show/pages/private";
 
 const App = () => {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
