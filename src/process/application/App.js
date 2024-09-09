@@ -1,28 +1,22 @@
-import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../../show/pages/Home";
-import About from "../../show/pages/About";
-import Contact from "../../show/pages/Contact";
-import Men from "../../show/pages/Men";
-import Women from "../../show/pages/Women";
-import Kids from "../../show/pages/Kids";
-import Navbar from '../../show/components/Navbar';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-function App() {
+import { Navbar } from "../../show/components";
+import { Home, About, Men, Women, Kids, Contact } from "../../show/pages";
+
+const App = () => {
   return (
-    <BrowserRouter>
-    <Navbar/>
+    <Router>
+        <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/men" element={<Men />} />
         <Route path="/women" element={<Women />} />
         <Route path="/kids" element={<Kids />} />
-        
+        <Route path="/contact" element={<Contact />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
-}
+};
 
 export default App;

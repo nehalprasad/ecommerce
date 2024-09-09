@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div>
-        <nav>
+    <div >
+        <nav className="flex justify-around">
            <Link to="/"><li>Home</li></Link>
            <Link to="/Men"><li>Men</li></Link>
            <Link to="/Women"><li>Women</li></Link>
