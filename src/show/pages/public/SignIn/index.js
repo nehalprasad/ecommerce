@@ -3,70 +3,64 @@ import React, { useState } from 'react';
 import { TextField } from '../../../components'
 
 const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
+  const [inputs, setInputs] = useState({
+    email: '',
+    password: '',
+  });
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+  });
 
-  const validateEmail = (value) => {
-    if (!value) return 'Email is required';
-    return '';
+  const handleInputChange = (name, value) => {
+    setInputs((prev) => ({ ...prev, [name]: value }));
   };
 
-  const validatePassword = (value) => {
-    if (!value) return 'Password is required';
-    const hasNumber = /\d/;
-    const hasLetter = /[a-zA-Z]/;
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/;
-    if (!hasNumber.test(value)) return 'Password must contain at least one number';
-    if (!hasLetter.test(value)) return 'Password must contain at least one letter';
-    if (!hasSpecialChar.test(value)) return 'Password must contain at least one special character';
-    return '';
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
-  const handleEmailChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-    setErrors((prevErrors) => ({ ...prevErrors, email: validateEmail(value) }));
-  };
-
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
-    setErrors((prevErrors) => ({ ...prevErrors, password: validatePassword(value) }));
-  };
+  const isFormValid = Object.values(errors).every((error) => error === '') &&
+    Object.values(inputs).every((value) => value !== '');
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="max-w-md w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Sign In</h2>
-        <form>
+    <div className="flex justify-center mt-6">
+      <div className="w-64 bg-white">
+        <h2 className="font-bold mb-4" style={{fontSize: "1.4rem"}}>Sign in</h2>
+        <form onSubmit={handleSubmit} className="signin-form">
           <TextField
             label="Email"
+            type="email"
+            name="email"
             placeholder="Enter Email"
+            value={inputs.email}
+            onChange={(value) => handleInputChange('email', value)}
             required
-            value={email}
-            onChange={handleEmailChange}
-            error={errors.email}
           />
           <TextField
             label="Password"
+            type="password"
+            name="password"
             placeholder="Enter Password"
+            value={inputs.password}
+            onChange={(value) => handleInputChange('password', value)}
             required
-            password
-            value={password}
-            onChange={handlePasswordChange}
-            error={errors.password}
+            hasEye={true}
           />
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            disabled={!isFormValid}
+            className={`w-full p-1.5 mt-4 text-white font-semibold rounded-full  ${isFormValid ? 'bg-blue-500' : 'bg-gray-500 cursor-pointer'}`}
+            style={{ fontSize: "0.6rem" }}
           >
-            Sign In
+            Sign in
           </button>
+          <p className="mt-1 text-center font-semibold" style={{color: "#F72585", fontSize: "0.6rem"}}>Forgot Password?</p>
         </form>
       </div>
     </div>
   );
 };
+
 
 export default SignIn;
