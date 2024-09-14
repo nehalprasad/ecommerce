@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { TextField } from '../../../components'
+import { TextField } from '../../../components'; 
+import Button from '../../../components/Button';
 
 const SignIn = () => {
   const [inputs, setInputs] = useState({
@@ -20,13 +21,14 @@ const SignIn = () => {
     e.preventDefault();
   };
 
-  const isFormValid = Object.values(errors).every((error) => error === '') &&
-    Object.values(inputs).every((value) => value !== '');
+  // const isFormValid = Object.values(errors).every((error) => error === '') &&
+  //   Object.values(inputs).every((value) => value !== '');
+  const isFormValid = Object.entries(errors).every(([key, error]) => !error && inputs[key] !== '');
 
   return (
     <div className="flex justify-center mt-6">
       <div className="w-64 bg-white">
-        <h2 className="font-bold mb-4" style={{fontSize: "1.4rem"}}>Sign in</h2>
+        <h2 className=" text-2xl font-bold mb-4">Sign in</h2>
         <form onSubmit={handleSubmit} className="signin-form">
           <TextField
             label="Email"
@@ -47,15 +49,20 @@ const SignIn = () => {
             required
             hasEye={true}
           />
-          <button
+          {/* <button
             type="submit"
             disabled={!isFormValid}
-            className={`w-full p-1.5 mt-4 text-white font-semibold rounded-full  ${isFormValid ? 'bg-blue-500' : 'bg-gray-500 cursor-pointer'}`}
-            style={{ fontSize: "0.6rem" }}
+            className={`w-full p-1.5 mt-4 text-white font-semibold text-xs rounded-full  ${isFormValid ? 'bg-blue-500' : 'bg-gray-500 cursor-pointer'}`}
           >
             Sign in
-          </button>
-          <p className="mt-1 text-center font-semibold" style={{color: "#F72585", fontSize: "0.6rem"}}>Forgot Password?</p>
+          </button> */}
+          <Button
+            type="submit"
+            isFormValid={isFormValid}
+          >
+            Sign in
+          </Button>
+          <p className="mt-1 text-center font-semibold text-xs text-pink-700">Forgot Password?</p>
         </form>
       </div>
     </div>

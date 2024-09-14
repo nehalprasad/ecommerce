@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ReactComponent as EyeIcon } from '../../assets/svg/eye-icon.svg';
 const TextField = ({
   name,
   type = 'text',
@@ -11,22 +12,29 @@ const TextField = ({
   const [error, setError] = useState('');
   const [inputType, setInputType] = useState(type);
 
-  const validate = (value) => {
-    if (type === 'email') {
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(value)) {
-        setError('Invalid email address');
-        return;
-      }
-    } else if (type === 'password') {
-      const passwordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-      if (!passwordPattern.test(value)) {
-        setError('Password must be at least 8 characters long and include at least one number and one special character');
-        return;
-      }
+  const validate = (type, value) => {
+    const validationRules = {
+    email: {
+    pattern: /^[^\s@]+@[^\s@]+.[^\s@]+$/,
+    errorMessage: 'Invalid email address'
+    },
+    password: {
+    pattern: /^(?=.[0-9])(?=.[!@#$%^&])[A-Za-z\d!@#$%^&]{8,}$/,
+    errorMessage: 'Password must be at least 8 characters long and include at least one number and one special character'
     }
+    };
+    
+    // Check if the type exists in the validation rules
+    if (validationRules[type]) {
+    const { pattern, errorMessage } = validationRules[type];
+    if (!pattern.test(value)) {
+    setError(errorMessage);
+    return;
+    }
+    }
+    
     setError('');
-  };
+    };
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -41,7 +49,7 @@ const TextField = ({
   return (
     <div className="relative mb-4">
       {label && (
-        <label className="block mb-1 font-medium text-zinc-400" style={{ fontSize: "0.6rem" }}>
+        <label className="block mb-1 text-xs font-medium text-zinc-400">
           {label}
         </label>
       )}
@@ -60,18 +68,14 @@ const TextField = ({
           className="absolute pt-2 right-2"
         >
           {inputType === 'password' ? (
-            <svg className="h-2.5 w-2.5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zM12 9a3 3 0 100 6 3 3 0 000-6z"></path>
-            </svg>
+            <EyeIcon className="h-2.5 w-2.5 text-gray-600" />
           ) : (
-            <svg className="h-2.5 w-2.5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 00-6 0 3 3 0 006 0z"></path>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.003 12S5.003 5 12 5c6.997 0 9.997 7 9.997 7S18.997 19 12 19c-6.997 0-9.997-7-9.997-7z"></path>
-            </svg>
+            <EyeIcon className="h-2.5 w-2.5 text-gray-600" />
           )}
         </button>
       )}
-      <p className="text-red-500 text-xs">{error}</p>
+      
+      <p className="text-red-500 text-xs">{error && error}</p>
     </div>
   );
 };
