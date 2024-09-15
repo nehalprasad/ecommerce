@@ -20,7 +20,7 @@ const SignIn = () => {
     e.preventDefault();
   };
 
-  const isFormValid = Object.entries(errors).every(([key, error]) => !error && inputs[key] !== '');
+  const isFormValid = Object.entries(errors).every(([key, error]) => !error && inputs[key] !== ''); 
 
   return (
     <div className="flex justify-center mt-6">

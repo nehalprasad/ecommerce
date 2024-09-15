@@ -9,7 +9,7 @@ const TextField = ({
   onChange,
   hasEye,
 }) => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState(''); 
   const [inputType, setInputType] = useState(type);
 
   const validate = (type, value) => {
