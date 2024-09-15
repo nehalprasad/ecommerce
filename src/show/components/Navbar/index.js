@@ -1,27 +1,32 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Cart } from "../../assets";
+import { Navigation } from "../../../process/helper";
 
-const navbarList = ["Men", "Women", "Kids", "About Us"];
+const navbarList = ["Ecommerce", "Men", "Women", "Kids", "About Us"];
 
-const renderNavbar = (item) => (
-  <Link to={`/${item.toLowerCase()}`} className="hover:text-red-900">
-    {item}
-  </Link>
-);
+const renderNavbar = (item, index) => {
+  const isFirst = index === 0;
+  return (
+    <Link
+      to={`/${isFirst ? "" : item.toLowerCase()}`}
+      className={`${
+        isFirst ? "text-4xl cursor-pointer" : ""
+      }hover:text-red-900`}
+    >
+      {item}
+    </Link>
+  );
+};
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <nav className="flex justify-between w-full font-mono items-center py-4">
-        <Link to="/" className="text-4xl cursor-pointer hover:text-red-900">
-          Ecommerce
-        </Link>
         {navbarList.map(renderNavbar)}
-        <Link to="/cart" className="hover:text-red-900">
-          <Cart />
-        </Link>
+        <Cart onClick={Navigation.bind(null, "/cart", navigate)} />
       </nav>
     </div>
   );
