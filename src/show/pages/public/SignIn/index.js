@@ -1,13 +1,22 @@
-import React from 'react'
-import { TextField } from '../../../components'
+import React from "react";
+import { Split, TextField } from "../../../components";
 
 function SignIn() {
   return (
-    <div className='flex justify-center items-center flex flex-row'>
-        <TextField label='Email' placeholder='Enter Email' required  />
-        <TextField label='Password' placeholder='Enter Password' required password />
-    </div>
-  )
+    <Split
+      rightContent={
+        <div className="flex justify-center items-center flex-col">
+          <TextField label="Email" placeholder="Enter Email" required />
+          <TextField
+            label="Password"
+            placeholder="Enter Password"
+            required
+            password
+          />
+        </div>
+      }
+    />
+  );
 }
 
-export default SignIn
+export default SignIn;
