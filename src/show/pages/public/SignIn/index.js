@@ -1,17 +1,16 @@
 
 import React, { useState } from 'react';
-import { TextField } from '../../../components'; 
-import Button from '../../../components/Button';
+import { Button, TextField } from '../../../components'; 
 
 const SignIn = () => {
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
   });
-  const [errors, setErrors] = useState({
+  const [errors] = useState({
     email: '',
     password: '',
-  });
+  }); 
 
   const handleInputChange = (name, value) => {
     setInputs((prev) => ({ ...prev, [name]: value }));
@@ -21,8 +20,6 @@ const SignIn = () => {
     e.preventDefault();
   };
 
-  // const isFormValid = Object.values(errors).every((error) => error === '') &&
-  //   Object.values(inputs).every((value) => value !== '');
   const isFormValid = Object.entries(errors).every(([key, error]) => !error && inputs[key] !== '');
 
   return (
@@ -49,13 +46,6 @@ const SignIn = () => {
             required
             hasEye={true}
           />
-          {/* <button
-            type="submit"
-            disabled={!isFormValid}
-            className={`w-full p-1.5 mt-4 text-white font-semibold text-xs rounded-full  ${isFormValid ? 'bg-blue-500' : 'bg-gray-500 cursor-pointer'}`}
-          >
-            Sign in
-          </button> */}
           <Button
             type="submit"
             isFormValid={isFormValid}

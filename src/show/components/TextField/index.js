@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ReactComponent as EyeIcon } from '../../assets/svg/eye-icon.svg';
+import { EyeIcon } from "../../assets/svg";
 const TextField = ({
   name,
   type = 'text',
@@ -14,27 +14,27 @@ const TextField = ({
 
   const validate = (type, value) => {
     const validationRules = {
-    email: {
-    pattern: /^[^\s@]+@[^\s@]+.[^\s@]+$/,
-    errorMessage: 'Invalid email address'
-    },
-    password: {
-    pattern: /^(?=.[0-9])(?=.[!@#$%^&])[A-Za-z\d!@#$%^&]{8,}$/,
-    errorMessage: 'Password must be at least 8 characters long and include at least one number and one special character'
-    }
+      email: {
+        pattern: /^[^\s@]+@[^\s@]+.[^\s@]+$/,
+        errorMessage: 'Invalid email address'
+      },
+      password: {
+        pattern: /^(?=.[0-9])(?=.[!@#$%^&])[A-Za-z\d!@#$%^&]{8,}$/,
+        errorMessage: 'Password must be at least 8 characters long and include at least one number and one special character'
+      }
     };
-    
+
     // Check if the type exists in the validation rules
     if (validationRules[type]) {
-    const { pattern, errorMessage } = validationRules[type];
-    if (!pattern.test(value)) {
-    setError(errorMessage);
-    return;
+      const { pattern, errorMessage } = validationRules[type];
+      if (!pattern.test(value)) {
+        setError(errorMessage);
+        return;
+      }
     }
-    }
-    
+
     setError('');
-    };
+  };
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -67,15 +67,11 @@ const TextField = ({
           onClick={togglePasswordVisibility}
           className="absolute pt-2 right-2"
         >
-          {inputType === 'password' ? (
-            <EyeIcon className="h-2.5 w-2.5 text-gray-600" />
-          ) : (
-            <EyeIcon className="h-2.5 w-2.5 text-gray-600" />
-          )}
+          <EyeIcon className="h-2.5 w-2.5 text-gray-600" />
         </button>
       )}
-      
-      <p className="text-red-500 text-xs">{error && error}</p>
+
+      {error && <p className="text-red-500 text-xs"> {error}</p>}
     </div>
   );
 };
