@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { EyeIcon } from "../../assets/svg";
 const TextField = ({
-  name,
+  name = "name",
   type = 'text',
   label = "",
   placeholder = "",
   value = "",
-  onChange,
-  hasEye,
+  onChange = () => {},
 }) => {
   const [error, setError] = useState(''); 
   const [inputType, setInputType] = useState(type);
@@ -59,9 +58,9 @@ const TextField = ({
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
-        className={`w-full border rounded-md text-xs p-1 ${error ? 'border-red-500' : 'border-gray-300'} focus:outline-none`}
+        className={`w-full border border-1 rounded-md text-xs p-1 ${error ? 'border-red-500' : 'border-gray-300'} focus:outline focus:outline-offset-0 focus:outline-blue-500`}
       />
-      {hasEye && type === 'password' && (
+      {type === 'password' && (
         <button
           type="button"
           onClick={togglePasswordVisibility}

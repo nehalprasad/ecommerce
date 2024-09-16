@@ -44,7 +44,6 @@ const SignIn = () => {
             value={inputs.password}
             onChange={(value) => handleInputChange('password', value)}
             required
-            hasEye={true}
           />
           <Button
             type="submit"
@@ -52,7 +51,7 @@ const SignIn = () => {
           >
             Sign in
           </Button>
-          <p className="mt-1 text-center font-semibold text-xs text-pink-700">Forgot Password?</p>
+          <p className="mt-1 text-center font-semibold text-xs text-pink">Forgot Password?</p>
         </form>
       </div>
     </div>
