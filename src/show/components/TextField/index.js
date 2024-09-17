@@ -31,6 +31,8 @@ const handleChange = (e, validate, setError, onChange) => {
 const togglePasswordVisibility = (inputType, setInputType) => {
   setInputType(inputType === 'password' ? 'text' : 'password');
 };
+//  const [error, setError] = useState('');
+//   const [inputType, setInputType] = useState(type);
 
 const TextField = ({
   name = "name",
@@ -46,7 +48,7 @@ const TextField = ({
   return (
     <div className="relative mb-4">
       {label && (
-        <label className="block mb-1 text-xs font-medium text-zinc-400">
+        <label className="block mb-1 textclr font-medium text-zinc-400">
           {label}
         </label>
       )}
@@ -56,7 +58,7 @@ const TextField = ({
         placeholder={placeholder}
         value={value}
         onChange={(e) => handleChange(e, validate, setError, onChange)}
-        className={`w-full border border-1 rounded-md text-xs p-1 ${error ? 'border-red-500' : 'border-gray-300'} focus:outline focus:outline-offset-0 focus:outline-blue-500`}
+        className={`w-full border border-1 rounded-md textclr p-1 ${error ? 'border-red-500' : 'border-gray-300'} focus:outline focus:outline-offset-0 focus:outline-blue-500`}
       />
       {type === 'password' && (
         <button
@@ -67,7 +69,7 @@ const TextField = ({
           <EyeIcon className="h-2.5 w-2.5 text-gray-600" />
         </button>
       )}
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      {error && <p className="text-red-500 textclr mt-1">{error}</p>}
     </div>
   );
 };

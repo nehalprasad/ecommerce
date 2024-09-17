@@ -1,15 +1,11 @@
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
-import LeftImage  from "../../assets/img/image.jpg";
 
 const Split = ({ leftContent = Fragment, rightContent = Fragment }) => {
   return (
     <div className="h-screen flex">
-      <div className="w-full h-full">{leftContent}
-      <img src={LeftImage} alt="Left side" className="object-cover" />
-        </div>
-      <div className="w-full h-full">{rightContent}
-      </div>
+      <div className="w-full h-full">{leftContent}</div>
+      <div className="w-full h-full">{rightContent}</div>
     </div>
   );
 };
