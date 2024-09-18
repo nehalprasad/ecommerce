@@ -1,0 +1,1 @@
+export const Navigation = (where, navigate) => navigate(where)
