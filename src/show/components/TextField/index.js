@@ -3,23 +3,33 @@ import { EyeIcon } from "../../assets/svg";
 
 const validate = (type, value, setError) => {
   const validationRules = {
+    text: {
+      pattern: /^[a-zA-Z\s]$/,
+      errorMessage: 'required'
+    },
     email: {
       pattern: /^[^\s@]+@[^\s@]+.[^\s@]+$/,
-      errorMessage: 'Invalid email address'
+      errorMessage: 'required'
     },
     password: {
       pattern: /^(?=.*[0-9])(?=.*[!@#$%^&])[A-Za-z\d!@#$%^&]{8,}$/,
-      errorMessage: 'Password must be at least 8 characters long and include at least one number and one special character'
+      errorMessage: 'Required'
+    },
+    invitationCode: {
+      pattern: /^[A-Za-z0-9]$/,
+      errorMessage: 'required'
     }
   };
 
-  if (validationRules[type]) {
-    const { pattern } = validationRules[type];
-    if (!pattern.test(value)) {
-      return;
-    }
+if (validationRules[type]) {
+  const { pattern, errorMessage } = validationRules[type];
+  if (!pattern.test(value)) {
+    setError(errorMessage);
+    return false;
   }
-  setError('');
+}
+setError('');
+return true;
 };
 
 const handleChange = (e, validate, setError, onChange) => {
@@ -31,8 +41,6 @@ const handleChange = (e, validate, setError, onChange) => {
 const togglePasswordVisibility = (inputType, setInputType) => {
   setInputType(inputType === 'password' ? 'text' : 'password');
 };
-//  const [error, setError] = useState('');
-//   const [inputType, setInputType] = useState(type);
 
 const TextField = ({
   name = "name",
@@ -44,11 +52,12 @@ const TextField = ({
 }) => {
   const [error, setError] = useState('');
   const [inputType, setInputType] = useState(type);
+  const errorColor = value.trim() === '' ? 'text-red-500' : 'text-blue-500';
 
   return (
-    <div className="relative mb-4">
+    <div className="relative mb-1">
       {label && (
-        <label className="block mb-1 textclr font-medium text-zinc-400">
+        <label className="textclr font-medium text-zinc-400">
           {label}
         </label>
       )}
@@ -58,7 +67,7 @@ const TextField = ({
         placeholder={placeholder}
         value={value}
         onChange={(e) => handleChange(e, validate, setError, onChange)}
-        className={`w-full border border-1 rounded-md textclr p-1 ${error ? 'border-red-500' : 'border-gray-300'} focus:outline focus:outline-offset-0 focus:outline-blue-500`}
+        className={`w-full border rounded-md textclr p-1 ${error ? 'border-red-500' : 'border-gray'} focus:outline focus:outline-offset-0 focus:outline-blue-500`}
       />
       {type === 'password' && (
         <button
@@ -69,7 +78,7 @@ const TextField = ({
           <EyeIcon className="h-2.5 w-2.5 text-gray-600" />
         </button>
       )}
-      {error && <p className="text-red-500 textclr mt-1">{error}</p>}
+      {error && <p className={`${errorColor} textclr mt-1 text-end`}>{error}</p>}
     </div>
   );
 };

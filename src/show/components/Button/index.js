@@ -16,6 +16,7 @@ const Button = ({
     className={`w-full p-1 mt-3 text-white font-semibold textclr rounded-full ${
       isFormValid ? 'bg-pink' : 'bg-gray-500 cursor-pointer'
     } ${className}`}
+    
   >
     {children}
   </button>
