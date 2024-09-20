@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import { Provider } from 'react-redux';
 import App from './process/application/App';
+import store from './process/redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
+    <Provider {...{store}}>
+        <App />
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
