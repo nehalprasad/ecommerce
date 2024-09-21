@@ -13,7 +13,6 @@ const validate = (type, value, setError) => {
     },
     password: {
       pattern: /^(?=.*[0-9])(?=.*[!@#$%^&])[A-Za-z\d!@#$%^&]{8,}$/,
-      errorMessage: 'Required'
     },
     invitationCode: {
       pattern: /^[A-Za-z0-9]$/,
@@ -53,6 +52,12 @@ const TextField = ({
   const [error, setError] = useState('');
   const [inputType, setInputType] = useState(type);
   const errorColor = value.trim() === '' ? 'text-red-500' : 'text-blue-500';
+  const [focused, setFocused] = useState(false);
+  const borderColor = focused || value.trim() !== '' ? 'border-blue-400' : error ? 'border-red-500' : 'border-gray';
+
+  const handleBlur = () => {
+    setFocused(false);
+  };
 
   return (
     <div className="relative mb-1">
@@ -67,7 +72,9 @@ const TextField = ({
         placeholder={placeholder}
         value={value}
         onChange={(e) => handleChange(e, validate, setError, onChange)}
-        className={`w-full border rounded-md textclr p-1 ${error ? 'border-red-500' : 'border-gray'} focus:outline focus:outline-offset-0 focus:outline-blue-500`}
+        onBlur={handleBlur}
+        className={`w-full border rounded-md textclr p-1 ${borderColor} focus:outline focus:outline-offset-0 focus:outline-none`}
+        
       />
       {type === 'password' && (
         <button
