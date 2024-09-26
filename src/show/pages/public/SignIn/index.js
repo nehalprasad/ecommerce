@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+
 import { Button, TextField, Split } from '../../../components';
-import '../../../styles/style.css';
 import LeftImage from "../../../assets/img/image.jpg";
+
+import '../../../styles/style.css';
 
 const handleInputChange = (name, value, setInputs) => {
   setInputs((prev) => ({ ...prev, [name]: value }));

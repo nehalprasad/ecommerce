@@ -1,8 +1,28 @@
 import React, { useState } from 'react';
-import { Button, TextField, Split, Region } from '../../../components';
-import '../../../styles/style.css';
-import LeftImage from "../../../assets/img/image.jpg";
 import { CheckIcon, XMarkIcon } from '@heroicons/react/24/solid';
+
+import { Button, TextField, Split, Region } from '../../../components';
+import LeftImage from "../../../assets/img/image.jpg";
+
+import '../../../styles/style.css';
+
+const validationMessages = [
+  {
+    key: 'length',
+    message: 'At least 8 characters',
+    errorMessage: 'At least 8 characters required',
+  },
+  {
+    key: 'number',
+    message: 'Contains a number',
+    errorMessage: 'Number required',
+  },
+  {
+    key: 'specialCharacter',
+    message: 'Contains a special character',
+    errorMessage: 'Special character required',
+  },
+];
 
 const validatePassword = (value) => {
   return {
@@ -35,10 +55,11 @@ const handleSubmit = (e) => {
 const SignUp = () => {
   const [inputs, setInputs] = useState({
     email: '',
-    password: '',
     region: '',
-    invitationCode: '',
+    password: '',
     accepted: false,
+    companyName: '',
+    invitationCode: '', 
   });
 
   const [validations, setValidations] = useState({
@@ -50,7 +71,7 @@ const SignUp = () => {
   const isFormValid = Object.values(validations).every(Boolean) && inputs.email && inputs.password && inputs.region && inputs.invitationCode && inputs.accepted;
 
   return (
-    <Split 
+    <Split
       leftContent={<img src={LeftImage} alt="Left side" className="object-cover h-full w-full" />}
       rightContent={
         <div className="flex justify-center my-5">
@@ -58,12 +79,12 @@ const SignUp = () => {
             <h2 className="text-2xl font-bold mb-4">Create your account</h2>
             <form onSubmit={handleSubmit} className="signup-form">
               <TextField
-                label="Company name"
+                label="Company Name"
                 type="text"
-                name="Companyname"
+                name="companyName"
                 placeholder="Tesla"
-                value={inputs.Companyname}
-                onChange={(value) => handleInputChange('Companyname', value, setInputs, setValidations)}
+                value={inputs.companyName}
+                onChange={(value) => handleInputChange('companyName', value, setInputs, setValidations)}
                 required
               />
               <TextField
@@ -92,30 +113,16 @@ const SignUp = () => {
               <div className="mt-2">
                 {inputs.password && (
                   <>
-                    <p className={`flex textclr ${validations.length ? 'text-green-500' : 'text-red-500'}`}>
-                      {validations.length ? (
-                        <CheckIcon className="h-4 w-4 mr-2" />
-                      ) : (
-                        <XMarkIcon className="h-4 w-4 mr-2" />
-                      )}
-                      {validations.length ? 'At least 8 characters' : 'At least 8 characters required'}
-                    </p>
-                    <p className={`flex textclr ${validations.number ? 'text-green-500' : 'text-red-500'}`}>
-                      {validations.number ? (
-                        <CheckIcon className="h-4 w-4 mr-2" />
-                      ) : (
-                        <XMarkIcon className="h-4 w-4 mr-2" />
-                      )}
-                      {validations.number ? 'Contains a number' : 'Number required'}
-                    </p>
-                    <p className={`flex textclr ${validations.specialCharacter ? 'text-green-500' : 'text-red-500'}`}>
-                      {validations.specialCharacter ? (
-                        <CheckIcon className="h-4 w-4 mr-2" />
-                      ) : (
-                        <XMarkIcon className="h-4 w-4 mr-2" />
-                      )}
-                      {validations.specialCharacter ? 'Contains a special character' : 'Special character required'}
-                    </p>
+                    {validationMessages.map(({ key, message, errorMessage }) => (
+                      <p key={key} className={`flex textclr ${validations[key] ? 'text-green-500' : 'text-red-500'}`}>
+                        {validations[key] ? (
+                          <CheckIcon className="h-4 w-4 mr-2" />
+                        ) : (
+                          <XMarkIcon className="h-4 w-4 mr-2" />
+                        )}
+                        {validations[key] ? message : errorMessage}
+                      </p>
+                    ))}
                   </>
                 )}
               </div>
@@ -155,3 +162,6 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+
+
