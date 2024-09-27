@@ -64,7 +64,6 @@ const TextField = ({
   onChange = () => {},
 }) => {
   const textField = useTextField(type, value);
-
   const handleBlur = () => {
     textField.setFocused(false);
   };
