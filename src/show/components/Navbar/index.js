@@ -10,6 +10,7 @@ const renderNavbar = (item, index) => {
   const isFirst = index === 0;
   return (
     <Link
+    key={index}
       to={`/${isFirst ? "" : item.toLowerCase()}`}
       className={`${
         isFirst ? "text-4xl cursor-pointer" : ""
@@ -23,8 +24,8 @@ const renderNavbar = (item, index) => {
 const Navbar = () => {
   const navigate = useNavigate();
   return (
-    <div>
-      <nav className="flex justify-between w-full font-mono items-center py-4">
+    <div className=' text-white'>
+      <nav className="flex justify-between w-full font-mono items-center bg-black py-4 sticky">
         {navbarList.map(renderNavbar)}
         <Cart onClick={Navigation.bind(null, "/cart", navigate)} />
       </nav>
