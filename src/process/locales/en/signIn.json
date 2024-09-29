@@ -1,0 +1,9 @@
+{
+    "signIn": "Sign In",
+    "email" : "Email",
+    "emailPlaceholder" : "Enter Email",
+    "password" : "Password",
+    "passwordPlaceholder" : "Enter Password",
+    "signInTitle" : "Sign In",
+    "forgetPassword" : "Forget Password?"
+}

@@ -1,0 +1,15 @@
+{
+    "signUpTitle" : "Sign Up",
+    "company" : "Company Name",
+    "companyPlaceholder" : "Tesla",
+    "email" : "Email",
+    "emailPlaceholder" : "Enter Email",
+    "region" : "Region",
+    "regionPlaceholder" : "Select Region",
+    "password" : "Password",
+    "passwordPlaceholder" : "Enter Password",
+    "invitationCode" : "Invitation Code",
+    "continue" : "Continue",
+    "invitationPlaceholder" : " Enter Invitation Code",
+    "termAccepted" : "I accept the Terms and Conditions"
+}

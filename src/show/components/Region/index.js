@@ -13,7 +13,6 @@ const Region = ({ inputs, handleInputChange, setInputs }) => (
     value={inputs.region}
     options={regions}
     onChange={(e) => handleInputChange('region', e.target.value, setInputs)}
-    label="Select Region"
   />
 );
 
