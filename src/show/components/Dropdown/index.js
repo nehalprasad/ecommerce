@@ -1,8 +1,9 @@
 import React from 'react';
+import I18n from'../../../process/locales/I18n';
 
 const Dropdown = ({ name, value, options, onChange, label }) => (
   <div className="mt-3 textclr text-zinc-400">
-    <label className="font-medium block mb-1">{label}</label>
+    <label className="font-medium block mb-1">{I18n.t('signUp:regionPlaceholder')}</label>
     <select
       name={name}
       value={value}

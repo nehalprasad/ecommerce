@@ -3,6 +3,7 @@ import { CheckIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
 import { Button, TextField, Split, Region } from '../../../components';
 import LeftImage from "../../../assets/img/image.jpg";
+import I18n from'../../../../process/locales/I18n';
 
 import '../../../styles/style.css';
 
@@ -76,22 +77,22 @@ const SignUp = () => {
       rightContent={
         <div className="flex justify-center my-5">
           <div className="w-64 bg-white">
-            <h2 className="text-2xl font-bold mb-4">Create your account</h2>
+            <h2 className="text-2xl font-bold mb-4">{I18n.t('signUp:signUpTitle')}</h2>
             <form onSubmit={handleSubmit} className="signup-form">
               <TextField
-                label="Company Name"
+                label={I18n.t('signUp:company')}
                 type="text"
                 name="companyName"
-                placeholder="Tesla"
+                placeholder={I18n.t('signUp:companyPlaceholder')}
                 value={inputs.companyName}
                 onChange={(value) => handleInputChange('companyName', value, setInputs, setValidations)}
                 required
               />
               <TextField
                 label="Email"
-                type="email"
+                type={I18n.t('signUp:email')}
                 name="email"
-                placeholder="Enter Email"
+                placeholder={I18n.t('signUp:emailPlaceholder')}
                 value={inputs.email}
                 onChange={(value) => handleInputChange('email', value, setInputs, setValidations)}
                 required
@@ -102,10 +103,10 @@ const SignUp = () => {
                 setInputs={setInputs}
               />
               <TextField
-                label="Password"
+                label={I18n.t('signUp:password')}
                 type="password"
                 name="password"
-                placeholder="Enter Password"
+                placeholder={I18n.t('signUp:passwordPlaceholder')}
                 value={inputs.password}
                 onChange={(value) => handleInputChange('password', value, setInputs, setValidations)}
                 required
@@ -127,10 +128,10 @@ const SignUp = () => {
                 )}
               </div>
               <TextField
-                label="Invitation Code"
+                label={I18n.t('signUp:invitationCode')}
                 type="text"
                 name="invitationCode"
-                placeholder="Enter Invitation Code"
+                placeholder={I18n.t('signUp:invitationPlaceholder')}
                 value={inputs.invitationCode}
                 onChange={(value) => handleInputChange('invitationCode', value, setInputs, setValidations)}
                 required
@@ -143,7 +144,7 @@ const SignUp = () => {
                   className="mr-2"
                 />
                 <label className="textclr my-3">
-                  I accept the terms and conditions
+                {I18n.t('signUp:termAccepted')}
                 </label>
               </div>
 
@@ -151,7 +152,7 @@ const SignUp = () => {
                 type="submit"
                 isFormValid={isFormValid}
               >
-                Continue
+                {I18n.t('signup:continue')} 
               </Button>
             </form>
           </div>
