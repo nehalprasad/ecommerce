@@ -1,10 +1,9 @@
 import { React, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import Marquees from '../Marquee';
 import { Cart } from "../../assets/svg";
-import MenImage from "../../assets/img/men.png";
-import WomenImage from "../../assets/img/women.jpg";
-import KidsImage from "../../assets/img/kid.png";
+import {Men, Women, Kid} from "../../assets/img"
 import { Navigation } from "../../../process/helper";
 
 const navbarItems = [
@@ -14,9 +13,9 @@ const navbarItems = [
 ];
 
 const categoryItems = [
-  { name: "Men", path: "men", image: MenImage },
-  { name: "Women", path: "women", image: WomenImage },
-  { name: "Kids", path: "kids", image: KidsImage },
+  { name: "Men", path: "men", image: Men},
+  { name: "Women", path: "women", image: Women},
+  { name: "Kids", path: "kids", image: Kid},
 ];
 
 const Navbar = () => {
@@ -27,7 +26,8 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="flex justify-between w-full font-mono items-center py-4 border-b border-red-900">
+      <Marquees />
+      <nav className="flex justify-between w-full font-mono items-center py-4 border-b border-red-900 md:px-20">
         <button onClick={toggleMobileMenu} className="md:hidden">Menu</button>
         {navbarItems.map(({ name, path }) => (
           <Link
