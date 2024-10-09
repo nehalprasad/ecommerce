@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       colors: {
         pink: '#e30347',
-        gray: '#75624D',
+        brown: '#75624D',
       },
       fontSize: {
         'xs': '0.6rem', 

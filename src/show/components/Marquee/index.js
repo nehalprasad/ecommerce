@@ -10,7 +10,7 @@ const messages = [
 
 const Marquees = () => {
   return (
-    <div className="bg-gray text-white text-xs py-1 font-bold">
+    <div className="bg-brown text-white text-xs py-1 font-bold">
       <Marquee>
         {messages.map((message, index) => (
           <div key={index} className="px-10">
