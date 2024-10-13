@@ -5,6 +5,10 @@ module.exports = {
     extend: {
       colors: {
         pink: '#e30347',
+        brown: '#75624D',
+      },
+      fontSize: {
+        'xs': '0.6rem', 
       },
     },
   },
