@@ -52,7 +52,7 @@ const sections = [
 ];
 
 const Footer = () => (
-  <footer className="bg-zinc-800 text-white px-5">
+  <footer className="bg-zinc-800 text-white mt-5 p-5">
     <div className="container mx-auto flex flex-col md:flex-row">
       {sections.map(({ title, content }, index) => (
         <div className="w-full md:w-1/4 mb-8 md:mb-0" key={index}>
