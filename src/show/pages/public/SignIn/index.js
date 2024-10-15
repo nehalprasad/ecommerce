@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Button, TextField, Split } from '../../../components';
 
-import LeftImage from "../../../assets/img/image.jpg";
-import I18n from'../../../../process/locales/I18n';
 import '../../../styles/style.css';
+import { EyeIcon } from '../../../assets/svg';
+import I18n from'../../../../process/locales/I18n';
+import LeftImage from "../../../assets/img/image.jpg";
 
 const handleInputChange = (name, value, setInputs) => {
   setInputs((prev) => ({ ...prev, [name]: value }));
@@ -48,6 +49,7 @@ const SignIn = () => {
                 value={inputs.password}
                 onChange={(value) => handleInputChange('password', value, setInputs)}
                 required
+                rightIcon={EyeIcon}
               />
               <Button
                 type="submit"

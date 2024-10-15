@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         pink: '#e30347',
         brown: '#75624D',
+        lightbrown: '#cfcfcf',
       },
       fontSize: {
         'xs': '0.6rem', 

@@ -1,13 +1,21 @@
-import I18n from 'i18next';
+import I18n from 'i18next'; 
+import { initReactI18next } from 'react-i18next';
+import en from './en';
 
-import en from './en'
-
-I18n.init({
-  resources: {
-    en
-  },
-  fallbackLng: 'en',
-  whitelist: ['en']
-});
+I18n
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: {
+        translation: en,
+      },
+    },
+    lng: 'en', 
+    fallbackLng: 'en', 
+    interpolation: {
+      escapeValue: false, 
+    },
+    whitelist: ['en'], 
+  });
 
 export default I18n;

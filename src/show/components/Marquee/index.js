@@ -1,18 +1,18 @@
 import React from 'react';
 import Marquee from 'react-fast-marquee';
 
+import I18n from '../../../process/locales/I18n';
+
 const messages = [
-  "Free Deliveries Above Rs.599",
-  "Additional Discounts at Checkout",
-  "Free Deliveries Above Rs.599",
-  "Additional Discounts at Checkout",
+  I18n.t('navbar:freeDeliveries'),
+  I18n.t('navbar:additionalDiscount'),
 ];
 
 const Marquees = () => {
   return (
-    <div className="bg-brown text-white text-xs py-1 font-bold">
+    <div className="bg-brown text-white text-sm py-1 font-bold">
       <Marquee>
-        {messages.map((message, index) => (
+        {messages.concat(messages, messages).map((message, index) => (
           <div key={index} className="px-10">
             {message}
           </div>
