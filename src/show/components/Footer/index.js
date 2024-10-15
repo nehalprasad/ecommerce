@@ -1,44 +1,44 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaTwitter, FaInstagram, FaLinkedin, FaFacebookF } from 'react-icons/fa';
-
+import I18n from '../../../process/locales/I18n';
 const sections = [
   {
-    title: 'Skin Solutions',
+    title: I18n.t('footer:skinsolutions'),
     content: (
       <>
-        <p><b>Clinic Address:</b><br />D- 396, Defence Colony, Delhi 110024</p>
-        <p><b>Clinic Phone No:</b><br />9821-585-586</p>
-        <p><b>Support No:</b><br />01141048056 (10 AM - 5 PM)</p>
-        <p><b>Email:</b><br />skinsolutions@gmail.com</p>
+        <p><b>{I18n.t('footer.clinicAddress')}</b><br />{I18n.t('footer.clinicAddressDetails')}</p>
+        <p><b>{I18n.t('footer.Phone')}</b><br />{I18n.t('footer.PhoneNo')}</p>
+        <p><b>{I18n.t('footer.supportNo')}</b><br />{I18n.t('footer.supportNoDetails')}</p>
+        <p><b>{I18n.t('footer.email')}</b><br />{I18n.t('footer.emailDetails')}</p>
       </>
     ),
   },
   {
-    title: 'Important Links',
+    title: I18n.t('footer:importantLinks'),
     content: (
       <ul className="space-y-1.5">
-        {['Meet our Doctors', 'My Account', 'Media Coverage', 'Blogs', 'Cart', 'Sitemap'].map((item, i) => (
+        {I18n.t('footer.importantLinksItems', { returnObjects: true }).map((item, i) => (
           <li key={i}><Link to="#" className="hover:underline block">{item}</Link></li>
         ))}
       </ul>
     ),
   },
   {
-    title: 'Information',
+    title: I18n.t('footer:information'),
     content: (
       <ul className="space-y-1.5">
-        {['Contacts', 'Shipping Policy', 'Refund & Return Policy', 'Privacy Policy', 'Terms & Conditions'].map((item, i) => (
+        {I18n.t('footer.informationItems', { returnObjects: true }).map((item, i) => (
           <li key={i}><Link to="#" className="hover:underline block">{item}</Link></li>
         ))}
       </ul>
     ),
   },
   {
-    title: 'Clinic Timings:',
+    title: I18n.t('footer:clinicTimings'),
     content: (
       <>
-        <p className="mb-5">Tuesday to Sunday - 12:00 PM to 6:30 PM. Closed on Monday</p>
+        <p className="mb-5">{I18n.t('footer:timings')} </p>
         <div className="flex space-x-2">
           {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedin].map((Icon, index) => (
             <a key={index} href="#" className="bg-white rounded-full p-1.5 text-gray-800 hover:text-blue-800">
@@ -53,7 +53,7 @@ const sections = [
 
 const Footer = () => (
   <footer className="bg-zinc-800 text-white mt-5 p-5">
-    <div className="container mx-auto flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row px-10">
       {sections.map(({ title, content }, index) => (
         <div className="w-full md:w-1/4 mb-8 md:mb-0" key={index}>
           <h2 className="text-xs font-bold uppercase mb-2">{title}</h2>
